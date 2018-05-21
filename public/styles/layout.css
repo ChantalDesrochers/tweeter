@@ -22,6 +22,14 @@ body {
 
 }
 
+
+.container {
+  width: 450px;
+  background-color: white;
+  margin: 140px auto;
+
+}
+
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
