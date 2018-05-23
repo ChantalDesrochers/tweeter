@@ -50,46 +50,20 @@ const data = [
 
 
 
-// function createTweetElement(twObj) {
-
-// var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
-
-// var formattedDate = new Date(twObj.created_at);
-
-// $tweet.append(`
-//           <header>
-//           <img src="${twObj.user.avatars.small}"/>
-//           <h2>${twObj.user.name}</h2>
-//           <p>${twObj.user.handle}</p>
-//         </header>
-//         <p class="tweet-content">${twObj.content.text}</p>
-//         <footer><p>${formattedDate.toDateString()}</p>
-//           <div class="tweet-icons">
-//             <i class="fas fa-flag"></i>
-//             <i class="fas fa-retweet"></i>
-//             <i class="fas fa-heart"></i>
-//           </div>
-//         </footer>`);
-
-// return $tweet;
-
-// }
-
-
 function createTweetElement(twObj) {
 
 var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
 
-// var formattedDate = new Date(twObj.created_at);
+var formattedDate = new Date(twObj.created_at);
 
 $tweet.append(`
           <header>
-          <img src="https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png"/>
-          <h2>UserName</h2>
-          <p>myHandle</p>
+          <img src="${twObj.user.avatars.small}"/>
+          <h2>${twObj.user.name}</h2>
+          <p>${twObj.user.handle}</p>
         </header>
-        <p class="tweet-content">${twObj}</p>
-        <footer><p>May 20th</p>
+        <p class="tweet-content">${twObj.content.text}</p>
+        <footer><p>${formattedDate.toDateString()}</p>
           <div class="tweet-icons">
             <i class="fas fa-flag"></i>
             <i class="fas fa-retweet"></i>
@@ -101,37 +75,43 @@ return $tweet;
 
 }
 
-// function renderTweets(tweets) {
-//  tweets.forEach(function(tweet) {
-//    createTweetElement(tweet).appendTo("#tweets-container");
-//  });
+
+// function createTweetElement(twObj) {
+
+// var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
+
+// // var formattedDate = new Date(twObj.created_at);
+
+// $tweet.append(`
+//           <header>
+//           <img src="https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png"/>
+//           <h2>UserName</h2>
+//           <p>myHandle</p>
+//         </header>
+//         <p class="tweet-content">${twObj}</p>
+//         <footer><p>May 20th</p>
+//           <div class="tweet-icons">
+//             <i class="fas fa-flag"></i>
+//             <i class="fas fa-retweet"></i>
+//             <i class="fas fa-heart"></i>
+//           </div>
+//         </footer>`);
+
+// return $tweet;
+
 // }
+
+function renderTweets(tweets) {
+ tweets.forEach(function(tweet) {
+   createTweetElement(tweet).appendTo("#tweets-container");
+ });
+}
 
 // $(document).ready(function() {
 //  renderTweets(data);
 // });
 
 
-
-//submitting form with Ajax
-//need to target button
-//need to pull data from input (or from /tweets?)
-//need to push that into create tweets function?
-
-
-
-
-// $("form").on("submit", function(event) {
-//   event.preventDefault();
-//   var tweet = $(this).serialize();
-//   $.ajax({
-//   type: "POST",
-//   url: "http://localhost:8080/tweets/",
-//   data: tweet,
-//   success: createTweetElement,
-//   dataType: "string"
-// });
-// });
 
 // $("form").on("submit", function(event) {
 //   event.preventDefault();
@@ -145,13 +125,18 @@ $("form").on("submit", function(event) {
   $.post("/tweets", tweet, createTweetElement(tweet).appendTo("#tweets-container"));
     })
 
+
+function loadTweets() {
+   $.ajax({
+    url: '/tweets',
+    method: 'GET',
+    success: function (tweets) {
+    renderTweets(tweets);
+  }
 });
-// $("form").submit(function(event) {
-//     event.preventDefault();
-//   var tweet = $(this).serialize();
-//   console.log(tweet);
-//   // $.post("/tweets/", tweet, createTweetElement(tweet).appendTo("#tweets-container"));
-//     });
+}
+loadTweets();
+});
 
 
 
