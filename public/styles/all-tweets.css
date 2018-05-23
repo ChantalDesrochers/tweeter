@@ -69,6 +69,7 @@ border-top: 0.5px solid #eee;
 footer p {
   position: relative;
 bottom: 60%;
+display: inline;
 }
 
 img {
