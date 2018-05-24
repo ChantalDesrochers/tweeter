@@ -73,7 +73,6 @@ $(document).ready(function() {
               $('.counter').text("Tweets must be less than 140 characters");
             } else {
               var tweet = $(this).serialize();
-
               var post = $.ajax({
                 type: "POST",
                 url: "/tweets",
@@ -85,6 +84,7 @@ $(document).ready(function() {
                     success: function(data) {
                       $("form")[0].reset();
                       renderTweets(data);
+
                     }
                   });
 
