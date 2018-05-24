@@ -18,7 +18,7 @@
 //   {
 // ]
 
-
+//db named tweeter, collection tweets
 
 function createTweetElement(twObj) {
 
@@ -45,31 +45,6 @@ return $tweet;
 
 }
 
-
-// function createTweetElement(twObj) {
-
-// var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
-
-// // var formattedDate = new Date(twObj.created_at);
-
-// $tweet.append(`
-//           <header>
-//           <img src="https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png"/>
-//           <h2>UserName</h2>
-//           <p>myHandle</p>
-//         </header>
-//         <p class="tweet-content">${twObj}</p>
-//         <footer><p>May 20th</p>
-//           <div class="tweet-icons">
-//             <i class="fas fa-flag"></i>
-//             <i class="fas fa-retweet"></i>
-//             <i class="fas fa-heart"></i>
-//           </div>
-//         </footer>`);
-
-// return $tweet;
-
-// }
 
 function renderTweets(tweets) {
   $('#tweets-container').html("");
