@@ -21,7 +21,7 @@
 
 
 function createTweetElement(twObj) {
-console.log(twObj);
+
 var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
 
 var formattedDate = new Date(twObj.created_at);
@@ -99,18 +99,27 @@ function loadTweets() {
 
 $(document).ready(function() {
       loadTweets();
+
+  $('.new-tweet').toggle();
+  $('.compose').click(function() {
+    $('.new-tweet').toggle('slow', function() {
+      console.log('test');
+      $(this).find('textarea').focus();
+    });
+  });
+
       $("form").on("submit", function(event) {
             event.preventDefault();
 
             var char = +$('.counter').text()
 
-            // create tweets
             if (char >= 140) {
               $('.counter').text("You must input some text in the field");
             } else if (char <= 0) {
               $('.counter').text("Tweets must be less than 140 characters");
             } else {
               var tweet = $(this).serialize();
+
               var post = $.ajax({
                 type: "POST",
                 url: "/tweets",
@@ -121,7 +130,7 @@ $(document).ready(function() {
                     url: "/tweets",
                     success: function(data) {
                       $("form")[0].reset();
-                      renderTweets(data);// createTweetElement(tweet[tweet.length - 1]).prependTo("#tweets-container");
+                      renderTweets(data);
                     }
                   });
 
@@ -129,7 +138,12 @@ $(document).ready(function() {
               });
             }
           });
+
+
+
         });
+
+
 
 
 

@@ -22,3 +22,18 @@
   font-size: 2em;
 }
 
+#nav-bar a:link {
+  display: block;
+  border-radius: 5px;
+  border: 1px solid black;
+  float: right;
+  padding: 20px 40px;
+  margin: 8px;
+  color: #00a087;
+  background-color: #e8fdff;
+  text-decoration: none;
+}
+
+#nav-bar a:hover {
+  background-color: white;
+}
