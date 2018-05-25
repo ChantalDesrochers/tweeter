@@ -15,7 +15,7 @@ function createTweetElement(twObj) {
     const weeks = day * 7;
 
 
-    if (timeElapsed > weeks) {
+    if (timeElapsed > weeks*2) {
       var numberOfWk = Math.floor(timeElapsed / weeks);
       timeElapsed -= numberOfWk * weeks;
       if (numberOfWk === 1) {
@@ -58,7 +58,7 @@ function createTweetElement(twObj) {
       }
       return timeString
     }
-    return "Posted seconds ago";
+    return "Just now";
   }
 
 
