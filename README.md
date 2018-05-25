@@ -2,10 +2,12 @@
 
 Tweeter is a single-page Twitter clone that uses JS, JQuery, HTML5, CSS and AJAX on the client side, and Node, Express and MongoDB on the server-side.
 
-##Final Product
+## Final Product
 The finalized app allows for users to type into a text input within a character count of 140 or under. If users try to submit a tweet over or under the 140 characters, they will be notified that they cannot. Tweets are stored within a database and will persist with server restarts.
 UX was touched on by having some interactive pieces such as the for toggle via the submit button. The form resets upon a tweet submission and the character counter is reset. New tweets are rendered at the top of the page, and are stylized to pop when hovered over.
 
+!["Screenshot of compose box toggled to view"](https://github.com/ChantalDesrochers/tweeter/blob/master/public/images/ComposeTweetToggledToVisible.png?raw=true)
+!["Screenshot of tweet list"](https://github.com/ChantalDesrochers/tweeter/blob/master/public/images/tweetPageformHidden.png?raw=true)
 
 ## Getting Started
 
