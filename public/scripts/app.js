@@ -4,7 +4,66 @@ function createTweetElement(twObj) {
 
 var $tweet = $("<article>").addClass("all-tweets"); //rename classes and ids
 
-var formattedDate = new Date(twObj.created_at);
+
+function timeSincePost() {
+var date = Date.now();
+var postDate = twObj.created_at;
+var timeElapsed = date - postDate;
+var timeString = "";
+const minute = 1000 * 60;
+const hour = minute * 60;
+const day = hour * 24;
+const weeks = day * 7;
+
+
+if (timeElapsed > weeks) {
+var numberOfWk = Math.floor(timeElapsed / weeks);
+timeElapsed -= numberOfWk * weeks;
+if(numberOfWk === 1) {
+  timeString += `Posted ${numberOfWk} week ago`;
+} else {
+  timeString += `Posted ${numberOfWk} weeks ago`;
+}
+return timeString;
+}
+
+if (timeElapsed > day) {
+var numberOfDay = Math.floor(timeElapsed / day);
+timeElapsed -= numberOfDay * day;
+if (numberOfDay === 1) {
+  timeString += `Posted ${numberOfDay} day ago`;
+} else {
+  timeString += `Posted ${numberOfDay} days ago`;
+}
+return timeString;
+}
+
+if (timeElapsed > hour) {
+var numberOfHr = Math.floor(timeElapsed / hour);
+timeElapsed -= numberOfHr * hour;
+if (numberOfHr === 1) {
+  timeString += `Posted ${numberOfHr} hour ago`;
+} else {
+  timeString += `Posted ${numberOfHr} hours ago`;
+}
+return timeString;
+}
+
+if (timeElapsed > minute) {
+var numberOfMin = Math.floor(timeElapsed / minute);
+timeElapsed -= numberOfMin * minute;
+if (numberOfMin === 1) {
+  timeString += `Posted ${numberOfMin} minute ago`;
+} else {
+  timeString += `Posted ${numberOfMin} minutes ago`;
+}
+return timeString
+}
+ return "Posted seconds ago";
+}
+
+
+
 
 $tweet.append(`
           <header>
@@ -13,7 +72,7 @@ $tweet.append(`
           <p>${twObj.user.handle}</p>
         </header>
         <p class="tweet-content">${twObj.content.text}</p>
-        <footer><p>${formattedDate.toDateString()}</p>
+        <footer><p>${timeSincePost()}</p>
           <div class="tweet-icons">
             <i class="fas fa-flag"></i>
             <i class="fas fa-retweet"></i>
@@ -83,6 +142,7 @@ $(document).ready(function() {
                     url: "/tweets",
                     success: function(data) {
                       $("form")[0].reset();
+                      $('.counter').text("140");
                       renderTweets(data);
 
                     }
